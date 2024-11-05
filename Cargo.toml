@@ -1,0 +1,12 @@
+[package]
+authors = ["PFiS1737 <pfis1737@gmail.com>"]
+description = "A simple matrix library for rust"
+edition = "2021"
+homepage = "https://github.com/PFiS1737/rust_matrix#readme"
+license = "MIT"
+name = "rust_matrix"
+repository = "https://github.com/PFiS1737/rust_matrix"
+version = "0.1.0"
+
+[dependencies]
+thiserror = "1.0.65"
