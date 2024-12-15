@@ -18,6 +18,7 @@ impl MatrixElementDisplay {
                 format!("{:.14}", ele)
                     .trim_start_matches('-')
                     .trim_end_matches('0')
+                    .trim_end_matches('.')
                     .to_string()
             },
         }
@@ -25,7 +26,6 @@ impl MatrixElementDisplay {
 }
 
 impl Display for Matrix {
-    // TODO: 优化
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         let space = 3;
 
@@ -168,6 +168,35 @@ mod tests {
 │  -14   0    │
 │  -38   15   │
 └             ┘
+"
+            .trim()
+            .to_string()
+        );
+
+        let m = matrix![
+            1, 0;
+            // in this case, the `ele.is_integer()` returns false, but the `format!("{:.14}", ele)` make it to 1.00000000000000
+            // so, we may gets `1.` as result
+            0, 0.9999999999999998;
+        ];
+        assert_ne!(
+            format!("{}", m),
+            r"
+┌            ┐
+│   1   0    │
+│   0   1.   │
+└            ┘
+"
+            .trim()
+            .to_string()
+        );
+        assert_eq!(
+            format!("{}", m),
+            r"
+┌           ┐
+│   1   0   │
+│   0   1   │
+└           ┘
 "
             .trim()
             .to_string()

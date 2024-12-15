@@ -6,7 +6,7 @@ homepage = "https://github.com/PFiS1737/rust_matrix#readme"
 license = "MIT"
 name = "rust_matrix"
 repository = "https://github.com/PFiS1737/rust_matrix"
-version = "0.1.0"
+version = "0.1.1"
 
 [dependencies]
 thiserror = "1.0.65"
